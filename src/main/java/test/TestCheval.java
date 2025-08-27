@@ -1,23 +1,26 @@
 package test;
 
-import model.Race;
-import model.Cheval;
+import model.Vente;
+import model.Lieu;
 
 public class TestCheval {
 
     public static void main(String[] args) {
 
-        Cheval c = new Cheval();
-        c.setId(2);
-        c.setNom("Houri");
+//        System.out.println("Cheval : " + c.getId() + " " + c.getNom() + " " + c.getRace().getId() + " " + c.getRace().getNom());
 
-        Race r = new Race();
-        r.setId(1);
-        r.setNom("Pur-sang");
+        Vente v = new Vente();
+        v.setId(2);
+        v.setNom("Vente de Benjamin");
 
-        c.setRace(r);
+        Lieu l = new Lieu();
+        l.setId(1);
+        l.setVille("Domfron");
 
-        System.out.println("Cheval : " + c.getId() + " " + c.getNom() + " " + c.getRace().getId() + " " + c.getRace().getNom());
+
+        v.setLieu(l);
+
+        System.out.println(v.getLieu().getCommentaires());
 
     }
 
