@@ -1,11 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Lieu {
 
     private int id;
     private String ville;
     private int nbBoxes;
     private String commentaires;
+
+    private ArrayList<Course> courses;
+
 
     public Lieu() {
     }
@@ -42,5 +47,19 @@ public class Lieu {
         this.commentaires = commentaires;
     }
 
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(ArrayList<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void addCourse(Course course) {
+        if (this.courses == null) {
+            this.courses = new ArrayList<>();
+        }
+        this.courses.add(course);
+    }
 
 }
