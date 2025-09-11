@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Lot {
 
     private int id;
@@ -7,6 +9,8 @@ public class Lot {
 
     private Cheval cheval;
     private Vente vente;
+
+    private ArrayList<Enchere> encheres;
 
     public Lot(){
 
@@ -39,6 +43,21 @@ public class Lot {
     }
     public void setVente(Vente vente) {
         this.vente = vente;
+    }
+
+    public ArrayList<Enchere> getEncheres() {
+        return encheres;
+    }
+
+    public void setEncheres(ArrayList<Enchere> encheres) {
+        this.encheres = encheres;
+    }
+
+    public void addEnchere(Enchere enchere) {
+        if (this.encheres == null) {
+            this.encheres = new ArrayList<>();
+        }
+        this.encheres.add(enchere);
     }
 
 
