@@ -18,10 +18,11 @@ public class TestConnexionBdd {
 
         System.out.println("Cheval 1 : " + DaoCheval.getLeCheval(cnx, 1).getPoids());
 
+
         for(Cheval c :  DaoCheval.getLesChevaux(cnx)) {
-            System.out.println(" - Numéro :  " + c.getId() + " Nom : " + c.getNom() + " Sexe : " + c.getSexe() + " Naissance : " + c.getDateNaissance());
+            System.out.println(" - Numéro :  " + c.getId() + " Nom : " + c.getNom() + " Sexe : " + c.getSexe() + " Naissance : " + c.getDateNaissance() + " ");
         }
 
-            }
+    }
 
 }

@@ -13,6 +13,7 @@ public class Cheval {
     private int poids;
 
     private Race race;
+    private Robe robe;
 
     public Cheval() {
     }
@@ -76,7 +77,6 @@ public class Cheval {
     public void setPoids(int poids) {
         this.poids = poids;
     }
-
 
 
 
