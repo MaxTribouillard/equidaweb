@@ -9,6 +9,8 @@ public class Cheval {
     private String sexe;
     private String sire;
     private LocalDate dateNaissance;
+    private int taille;
+    private int poids;
 
     private Race race;
     private Robe robe;
@@ -61,12 +63,19 @@ public class Cheval {
         this.sire = sire;
     }
 
-    public Robe getRobe() {
-        return robe;
+    public int getTaille() {
+        return taille;
     }
 
-    public void setRobe(Robe robe) {
-        this.robe = robe;
+    public void setTaille(int taille) {
+        this.taille = taille;
+    }
+    public int getPoids() {
+        return poids;
+    }
+
+    public void setPoids(int poids) {
+        this.poids = poids;
     }
 
 
