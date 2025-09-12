@@ -61,4 +61,14 @@ public class DaoRace {
         }
         return race;
     }
+
+//    public static boolean ajouterRace(Connection cnx, Race race) {
+//        try {
+//            requeteSql = cnx.prepareStatement("INSERT INTO race(nom) VALUES = ?");
+//            requeteSql.setString(1, race.getNom());
+//        }
+//        catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
