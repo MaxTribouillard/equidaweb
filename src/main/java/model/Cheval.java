@@ -9,6 +9,8 @@ public class Cheval {
     private String sexe;
     private String sire;
     private LocalDate dateNaissance;
+    private int taille;
+    private int poids;
 
     private Race race;
 
@@ -59,6 +61,23 @@ public class Cheval {
     public void setSire(String sire) {
         this.sire = sire;
     }
+
+    public int getTaille() {
+        return taille;
+    }
+
+    public void setTaille(int taille) {
+        this.taille = taille;
+    }
+    public int getPoids() {
+        return poids;
+    }
+
+    public void setPoids(int poids) {
+        this.poids = poids;
+    }
+
+
 
 
 

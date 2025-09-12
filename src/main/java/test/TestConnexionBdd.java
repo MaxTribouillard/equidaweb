@@ -14,7 +14,9 @@ public class TestConnexionBdd {
 
         Connection cnx = Connexionbdd.ouvrirConnexion();
         System.out.println ("nombre de chevaux = " + DaoCheval.getLesChevaux(cnx).size());
-        System.out.println("Nombre de race = " + DaoRace.getLesRaces(cnx).size());
+
+
+        System.out.println("Cheval 1 : " + DaoCheval.getLeCheval(cnx, 1).getPoids());
 
         for(Cheval c :  DaoCheval.getLesChevaux(cnx)) {
             System.out.println(" - Numéro :  " + c.getId() + " Nom : " + c.getNom() + " Sexe : " + c.getSexe() + " Naissance : " + c.getDateNaissance());
