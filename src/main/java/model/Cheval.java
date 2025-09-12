@@ -11,6 +11,7 @@ public class Cheval {
     private LocalDate dateNaissance;
 
     private Race race;
+    private Robe robe;
 
     public Cheval() {
     }
@@ -59,6 +60,15 @@ public class Cheval {
     public void setSire(String sire) {
         this.sire = sire;
     }
+
+    public Robe getRobe() {
+        return robe;
+    }
+
+    public void setRobe(Robe robe) {
+        this.robe = robe;
+    }
+
 
 
 

@@ -2,6 +2,7 @@ package database;
 
 import model.Cheval;
 import model.Race;
+import model.Robe;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,9 +61,10 @@ public class DaoCheval {
         try {
             requeteSql = cnx.prepareStatement(
                 "SELECT c.id as c_id, c.nom as c_nom, " +
-                "r.id as r_id, r.nom as r_nom " +
+                "r.id as r_id, r.nom as r_nom, ro.nom " +
                 "FROM cheval c " +
                 "INNER JOIN race r ON c.race_id = r.id " +
+                "INNER JOIN robe ro ON c.robe_id = ro.id " +
                 "WHERE c.id = ?"
             );
             requeteSql.setInt(1, idCheval);
@@ -71,10 +73,16 @@ public class DaoCheval {
                 cheval = new Cheval();
                 cheval.setId(resultatRequete.getInt("c_id"));
                 cheval.setNom(resultatRequete.getString("c_nom"));
+
                 Race race = new Race();
                 race.setId(resultatRequete.getInt("r_id"));
                 race.setNom(resultatRequete.getString("r_nom"));
+
                 cheval.setRace(race);
+
+                Robe robe = new Robe();
+                robe.setNom(resultatRequete.getString("ro.nom"));
+                cheval.setRobe(robe);
             }
         } catch (SQLException e) {
             e.printStackTrace();
