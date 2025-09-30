@@ -8,5 +8,6 @@
 <h1><%= "Equida Web" %></h1>
 <br/>
 <a href="/equidaweb/cheval-servlet/list">Liste des chevaux</a>
+<a href="/equidaweb/vente-servlet/list">Liste des ventes</a>
 </body>
 </html>

@@ -84,7 +84,7 @@ public class DaoCheval {
 
                 Robe robe = new Robe();
                 robe.setNom(resultatRequete.getString("ro.nom"));
-                cheval.setRobe(robe);
+                //cheval.setRobe(robe);
             }
         } catch (SQLException e) {
             e.printStackTrace();
