@@ -1,5 +1,6 @@
 package database;
 
+import model.Cheval;
 import model.Vente;
 import model.Lot;
 
@@ -18,12 +19,13 @@ public class DaoVente {
     public static ArrayList<Vente> getLesVentes(Connection cnx){
         ArrayList<Vente> listeVentes = new ArrayList<Vente>();
         try {
-            req = cnx.prepareStatement("SELECT Id_vente, nom FROM vente");
+            req = cnx.prepareStatement("SELECT Id_vente, nom, dateDebutVente FROM vente");
             res = req.executeQuery();
             while (res.next()) {
                 Vente vente = new Vente();
                 vente.setId(res.getInt("Id_vente"));
                 vente.setNom(res.getString("nom"));
+                vente.setDateDebutVente(res.getString("dateDebutVente"));
                 listeVentes.add(vente);
             }
         }
@@ -39,7 +41,7 @@ public class DaoVente {
         Vente vente = new Vente();
 
         try{
-            req = cnx.prepareStatement("SELECT Id_vente, nom FROM vente WHERE id=?");
+            req = cnx.prepareStatement("SELECT Id_vente, nom FROM vente WHERE Id_vente=?");
             req.setInt(1, id);
             res = req.executeQuery();
 
@@ -81,13 +83,18 @@ public class DaoVente {
         Lot lot = new Lot();
 
         try{
-            req = cnx.prepareStatement("SELECT * FROM lot WHERE id_Vente=?");
+            req = cnx.prepareStatement("SELECT * FROM lot, cheval WHERE Id_vente=? AND lot.id=cheval.id");
             req.setInt(1, id);
             res = req.executeQuery();
             if(res.next()){
-                lot.setId(res.getInt("id_lot"));
+                lot.setId(res.getInt("id"));
                 lot.setPrixDepart(res.getString("prixDepart"));
                 lot.setNumLot(res.getString("numLot"));
+                Cheval che = new Cheval();
+                che.setId(res.getInt("id"));
+                che.setNom(res.getString("nom"));
+                che.setSexe(res.getString("sexe"));
+                lot.setCheval(che);
             }
         }
         catch(Exception e){
