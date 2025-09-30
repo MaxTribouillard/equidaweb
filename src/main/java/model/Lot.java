@@ -6,6 +6,7 @@ public class Lot {
 
     private int id;
     private String prixDepart;
+    private String numLot;
 
     private Cheval cheval;
     private Vente vente;
@@ -43,6 +44,14 @@ public class Lot {
     }
     public void setVente(Vente vente) {
         this.vente = vente;
+    }
+
+    public void setNumLot(String numLot) {
+        this.numLot = numLot;
+    }
+
+    public String getNumLot() {
+        return numLot;
     }
 
     public ArrayList<Enchere> getEncheres() {
