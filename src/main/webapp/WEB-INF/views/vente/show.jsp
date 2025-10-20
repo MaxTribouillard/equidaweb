@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="model.Lot" %>
+<%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
 <html>
@@ -50,50 +51,33 @@
 <div class="container special">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="form-container">
-                <%
-                    Lot lot = (Lot)request.getAttribute("pLot");
-                    if(lot != null) {
-                %>
-                <h2>Détails de la vente : <%= lot.getCheval().getNom() %></h2>
 
-                <div class="row detail-row">
-                    <div class="col-sm-3 detail-label">Identifiant</div>
-                    <div class="col-sm-9 detail-value"><%= lot.getId() %></div>
-                </div>
+            <div class="table-responsive">
+                <p><% ArrayList<Lot> lesLots = (ArrayList)request.getAttribute("pLesLots"); %></p>
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>Numero</th>
+                        <th>Sexe</th>
+                        <th>Type</th>
+                        <th>Nom</th>
+                        <th>Prix de départ</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for (Lot l : lesLots) { %>
+                    <tr>
+                        <td><a href="<%= request.getContextPath() %>/vente-servlet/show?idVente=<%= l.getId() %>"><%= l.getNumLot() %></a></td>
 
-                <div class="row detail-row">
-                    <div class="col-sm-3 detail-label">Nom du cheval </div>
-                    <div class="col-sm-9 detail-value"><%=  lot.getCheval().getNom() %></div>
-                </div>
+                        <td><%= l.getPrixDepart() %></td>
 
-                <div class="row detail-row">
-                    <div class="col-sm-3 detail-label">Sexe du cheval </div>
-                    <div class="col-sm-9 detail-value"><%=  lot.getCheval().getSexe() %></div>
-                </div>
 
-                <div class="row detail-row">
-                    <div class="col-sm-3 detail-label">Prix de départ :  </div>
-                    <div class="col-sm-9 detail-value"><%=  lot.getPrixDepart() %>€</div>
-                </div>
-
-                <div class="row" style="margin-top: 30px;">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <a href="<%= request.getContextPath() %>/vente-servlet/list" class="btn btn-default">
-                            <span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste
-                        </a>
-                        <!-- Vous pouvez ajouter d'autres boutons ici, comme Modifier ou Supprimer -->
-                    </div>
-                </div>
-                <% } else { %>
-                <div class="alert alert-danger">
-                    Le cheval demandé n'existe pas.
-                </div>
-                <a href="<%= request.getContextPath() %>/vente-servlet/list" class="btn btn-default">
-                    <span class="glyphicon glyphicon-arrow-left"></span> Retour à la liste
-                </a>
-                <% } %>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
             </div>
+
         </div>
     </div>
 </div>

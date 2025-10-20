@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="model.Vente" %>
-<%@ page import="model.Race" %>
+<%@ page import="model.Lot" %>
 <%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -67,6 +67,8 @@
             </tbody>
         </table>
     </div>
+
+
 </div>
 
 <!-- Bootstrap JavaScript -->

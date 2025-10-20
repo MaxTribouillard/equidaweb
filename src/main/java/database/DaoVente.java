@@ -63,13 +63,14 @@ public class DaoVente {
         ArrayList<Lot> lesLots = new ArrayList<>();
 
         try{
-            req = cnx.prepareStatement("SELECT id as id_lot, prixDepart, numLot, Id_Vente FROM lot, vente WHERE lot.Id_vente = vente.Id_vente");
+            req = cnx.prepareStatement("SELECT id as id_lot, prixDepart, numLot, lot.Id_Vente FROM lot, vente WHERE lot.Id_vente = vente.Id_vente");
             res = req.executeQuery();
             while (res.next()) {
                 Lot lot = new Lot();
                 lot.setId(res.getInt("id_lot"));
                 lot.setPrixDepart(res.getString("prixDepart"));
                 lot.setNumLot(res.getString("numLot"));
+                lesLots.add(lot);
             }
         }
         catch(Exception e){
@@ -79,28 +80,34 @@ public class DaoVente {
         return lesLots;
     }
 
-    public static Lot getLotByVenteId(Connection cnx, int id){
-        Lot lot = new Lot();
+    public static ArrayList<Lot> getLotsByVenteId(Connection cnx, int id){
+        ArrayList<Lot> lesLots = new ArrayList<>();
 
         try{
-            req = cnx.prepareStatement("SELECT * FROM lot, cheval WHERE Id_vente=? AND lot.id=cheval.id");
+            req = cnx.prepareStatement("SELECT * FROM lot JOIN cheval ON lot.id = cheval.id JOIN race ON cheval.id_race = race.id_race WHERE lot.Id_Vente = ?;");
             req.setInt(1, id);
             res = req.executeQuery();
-            if(res.next()){
-                lot.setId(res.getInt("id"));
-                lot.setPrixDepart(res.getString("prixDepart"));
-                lot.setNumLot(res.getString("numLot"));
-                Cheval che = new Cheval();
-                che.setId(res.getInt("id"));
-                che.setNom(res.getString("nom"));
-                che.setSexe(res.getString("sexe"));
-                lot.setCheval(che);
-            }
+
+                while (res.next()) {
+                    Lot lot = new Lot();
+                    lot.setId(res.getInt("id"));
+                    lot.setPrixDepart(res.getString("prixDepart"));
+                    lot.setNumLot(res.getString("numLot"));
+                    Cheval c = new Cheval();
+                    c.setId(res.getInt("id"));
+                    c.setSexe(res.getString("sexe"));
+                    c.setNom(res.getString("nom"));
+                    c.setDateNaissance(res.getDate("date_naissance").toLocalDate());
+                    c.setSire(res.getString("sire"));
+
+                    lesLots.add(lot);
+                }
+
         }
         catch(Exception e){
             System.err.println(e);
         }
-        return lot;
+        return lesLots;
     }
 
 };
