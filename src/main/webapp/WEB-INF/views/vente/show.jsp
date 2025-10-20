@@ -49,6 +49,10 @@
 </nav>
 
 <div class="container special">
+    <div class="header-actions">
+        <h2 class="h2">Liste des lots : </h2>
+    </div>
+
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
@@ -59,7 +63,7 @@
                     <tr>
                         <th>Numero</th>
                         <th>Sexe</th>
-                        <th>Type</th>
+                        <th>Race</th>
                         <th>Nom</th>
                         <th>Prix de départ</th>
                     </tr>
@@ -69,7 +73,10 @@
                     <tr>
                         <td><a href="<%= request.getContextPath() %>/vente-servlet/show?idVente=<%= l.getId() %>"><%= l.getNumLot() %></a></td>
 
-                        <td><%= l.getPrixDepart() %></td>
+                        <td><%= l.getCheval().getSexe() %></td>
+                        <td><%= l.getCheval().getRace().getNom() %></td>
+                        <td><%= l.getCheval().getNom() %></td>
+                        <td><%= l.getPrixDepart() %>€</td>
 
 
                     </tr>
