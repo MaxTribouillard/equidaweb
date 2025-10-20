@@ -42,19 +42,15 @@ public class VenteServlet extends HttpServlet {
         if ("/list".equals(path)) {
             ArrayList<Vente> lesVentes = DaoVente.getLesVentes(cnx);
             request.setAttribute("pLesVentes", lesVentes);
+
             this.getServletContext().getRequestDispatcher("/WEB-INF/views/vente/list.jsp").forward(request, response);
         }
         if ("/show".equals(path)) {
             try {
                 int idVente = Integer.parseInt(request.getParameter("idVente"));
-                Lot lot = DaoVente.getLotByVenteId(cnx, idVente);
-
-                if (lot != null) {
-                    request.setAttribute("pLot", lot);
-                    this.getServletContext().getRequestDispatcher("/WEB-INF/views/vente/show.jsp").forward(request, response);
-                } else {
-                    response.sendRedirect(request.getContextPath() + "/vente-servlet/lister");
-                }
+                ArrayList<Lot> lesLots = DaoVente.getLotsByVenteId(cnx, idVente);
+                request.setAttribute("pLesLots", lesLots);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/views/vente/show.jsp").forward(request, response);
             } catch (NumberFormatException e) {
                 System.out.println("Erreur : l'id de la vente n'est pas un nombre valide");
                 response.sendRedirect(request.getContextPath() + "/vente-servlet/lister");
